@@ -16,12 +16,13 @@ extern "C" {
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <libusb.h>
-#ifdef __APPLE__
-#include <machine/endian.h>
-#else
-#include <endian.h>
-#endif
+#include <windows.h>
+#include <winsock2.h>
+
+#define le16toh(x) _byteswap_ushort((x))
+#define le32toh(x) _byteswap_ulong((x))
+#define be16toh(x) ntohs((x))
+#define be32toh(x) ntohl((x))
 
 #define CH347_SPI_VID 0x1a86
 #define CH347_SPI_PID 0x55db
