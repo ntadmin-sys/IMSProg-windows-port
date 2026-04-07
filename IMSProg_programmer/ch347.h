@@ -16,13 +16,19 @@ extern "C" {
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <windows.h>
-#include <winsock2.h>
-
-#define le16toh(x) _byteswap_ushort((x))
-#define le32toh(x) _byteswap_ulong((x))
-#define be16toh(x) ntohs((x))
-#define be32toh(x) ntohl((x))
+#include <libusb.h>
+#ifdef _WIN32
+#  include <winsock2.h>
+#  include <windows.h>
+#  define le16toh(x) FROM_LE16(x)
+#  define le32toh(x) FROM_LE32(x)
+#  define le64toh(x) FROM_LE64(x)
+#  define be16toh(x) FROM_BE16(x)
+#  define be32toh(x) FROM_BE32(x)
+#  define be64toh(x) FROM_BE64(x)
+#else
+#  include <endian.h>
+#endif
 
 #define CH347_SPI_VID 0x1a86
 #define CH347_SPI_PID 0x55db
