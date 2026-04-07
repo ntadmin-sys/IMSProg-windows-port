@@ -23,7 +23,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <assert.h>
-#include <sys/errno.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <time.h>
